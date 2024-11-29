@@ -70,7 +70,10 @@ router.post("/user/login", async (req, res) => {
       return res.status(400).json({ message: "Wrong email or password" });
     }
 
-    res.status(200).json({ message: `Bienvenue ${actualUser.username}` });
+    res.status(200).json({
+      _id: actualUser._id,
+      token: actualUser.token,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
