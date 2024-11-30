@@ -27,7 +27,7 @@ router.post("/favorites", isAuthenticated, async (req, res) => {
     if (existingFavorite) {
       // si un favoris existe, on le supprime
       await Favorite.findByIdAndDelete(existingFavorite._id);
-      res.status(200).json({ message: "Favoris supprimé" });
+      res.status(200).json({ id: existingFavorite._id });
     } else {
       // sinon on le créé
       const newFavorite = new Favorite({
