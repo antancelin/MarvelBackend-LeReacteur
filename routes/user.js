@@ -59,7 +59,7 @@ router.post("/user/login", async (req, res) => {
     const actualUser = await User.findOne({ email: userEmail });
 
     if (!actualUser) {
-      return res.status(400).json({ message: "Wrong email or password" });
+      return res.status(400).json({ message: "wrong email or password" });
     }
 
     const actualUserHash = SHA256(userPassword + actualUser.salt).toString(
@@ -67,7 +67,7 @@ router.post("/user/login", async (req, res) => {
     );
 
     if (actualUserHash !== actualUser.hash) {
-      return res.status(400).json({ message: "Wrong email or password" });
+      return res.status(400).json({ message: "wrong email or password" });
     }
 
     res.status(200).json({
